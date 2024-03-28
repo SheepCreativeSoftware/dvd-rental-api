@@ -2,15 +2,6 @@ import http from 'node:http';
 import { getApi } from './api/api';
 import { dataSource } from './database/dataSource';
 import { buntstift } from 'buntstift';
-import { Address } from './database/entity/Address';
-import { Store } from './database/entity/Store';
-import { Film } from './database/entity/Film';
-import { Customer } from './database/entity/Customer';
-import { FilmActor } from './database/entity/FilmActor';
-import { FilmCategory } from './database/entity/FilmCategory';
-import { Inventory } from './database/entity/Inventory';
-import { Rental } from './database/entity/Rental';
-import { Payment } from './database/entity/Payment';
 
 const main = async () => {
 	// Init Database
