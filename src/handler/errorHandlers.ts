@@ -15,7 +15,7 @@ const clientErrorHandler = (err: Error, _req: Request, res: Response, next: Next
 	if (err.stack) {
 		buntstift.error(err.stack);
 	}
-	if (err.name === 'ForbiddenError') {
+	if (err.name === 'Forbidden') {
 		return res.status(403).send('Forbidden');
 	}
 	return next(err);

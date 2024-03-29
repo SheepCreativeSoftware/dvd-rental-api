@@ -12,13 +12,13 @@ const getActor = (): Handler => {
 	return async (req, res) => {
 		try {
 			const params = getActorParams.parse(req.params);
-			const results = await dataSource.getRepository(Actor).findOneBy({
+			const result = await dataSource.getRepository(Actor).findOneBy({
 				actorId: Number(params.id),
 			});
-			if (results == null) {
+			if (result == null) {
 				throw new Error('Unknown Actor');
 			}
-			return res.send(results);
+			return res.send(result);
 		} catch (error) {
 			errorResponseHandler(res, error);
 		}
