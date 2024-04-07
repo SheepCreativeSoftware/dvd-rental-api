@@ -4,16 +4,14 @@ import { dataSource } from '../../../database/dataSource';
 import { errorResponseHandler } from '../../../handler/errorResponseHandler';
 import { z as zod } from 'zod';
 
-const getActorParams = zod.object({
-	id: zod.string(),
-});
+const getActorParams = zod.number();
 
 const getActor = (): Handler => {
 	return async (req, res) => {
 		try {
-			const params = getActorParams.parse(req.params);
+			const id = getActorParams.parse(Number(req.params.id));
 			const result = await dataSource.getRepository(Actor).findOneBy({
-				actorId: Number(params.id),
+				actorId: id,
 			});
 			if (result == null) {
 				throw new Error('Unknown Actor');
