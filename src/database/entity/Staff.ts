@@ -19,6 +19,7 @@ class Staff extends User {
 		name: 'username',
 		type: 'character varying',
 		length: 16,
+		unique: true,
 	})
 	username: string;
 

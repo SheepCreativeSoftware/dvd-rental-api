@@ -15,6 +15,7 @@ import { FilmCategory } from './entity/FilmCategory';
 import { Inventory } from './entity/Inventory';
 import { Rental } from './entity/Rental';
 import { Payment } from './entity/Payment';
+import { Session } from './entity/Session';
 
 const dataSource = new DataSource({
 	type: 'postgres',
@@ -39,6 +40,7 @@ const dataSource = new DataSource({
 		Language,
 		Payment,
 		Rental,
+		Session,
 		Staff,
 		Store,
 	],

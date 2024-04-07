@@ -18,6 +18,7 @@ class User extends Person {
 		type: 'character varying',
 		length: 50,
 		nullable: true,
+		unique: true,
 	})
 	email: string;
 
