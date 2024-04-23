@@ -1,35 +1,20 @@
 import type { Handler } from 'express';
-import { Actor } from '../../../database/entity/Actor';
-import { dataSource } from '../../../database/dataSource';
-import { errorResponseHandler } from '../../../handler/errorResponseHandler';
-import { z as zod } from 'zod';
-
-const updateActorParams = zod.object({
-	id: zod.string(),
-});
-
-const updateActorBody = zod.object({
-	firstName: zod.string().max(45).optional(),
-	lastName: zod.string().max(45).optional(),
-});
+import { RequestBodyValidator, RequestParamValidator } from './requestValidator';
+import { ActorRepository } from '../../../database/repository/ActorRepository';
 
 const updateActor = (): Handler => {
-	return async (req, res) => {
+	return async (req, res, next) => {
 		try {
-			const params = updateActorParams.parse(req.params);
-			const actor = await dataSource.getRepository(Actor).findOneBy({
-				actorId: Number(params.id),
-			});
-			if (actor == null) {
-				throw new Error('Unknown Actor');
-			}
+			const { id } = RequestParamValidator.parse(req.params);
+			const actor = await ActorRepository.findById(id);
 
-			const response = updateActorBody.parse(req.body);
-			dataSource.getRepository(Actor).merge(actor, response);
-			const results = await dataSource.getRepository(Actor).save(actor);
-			return res.send(results);
+			const requestBody = RequestBodyValidator.parse(req.body);
+			ActorRepository.merge(actor, requestBody);
+			const result = await ActorRepository.save(actor);
+
+			return res.status(200).send(result);
 		} catch (error) {
-			errorResponseHandler(res, error);
+			next(error);
 		}
 	};
 };

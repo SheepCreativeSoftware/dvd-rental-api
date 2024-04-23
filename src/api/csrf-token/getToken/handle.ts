@@ -1,5 +1,4 @@
 import type { Handler } from 'express';
-import { errorResponseHandler } from '../../../handler/errorResponseHandler';
 
 const getCsrfToken = (): Handler => {
 	return (req, res, next) => {
@@ -14,7 +13,7 @@ const getCsrfToken = (): Handler => {
 				return next(error);
 			}
 
-			return errorResponseHandler(res, error);
+			return next(error);
 		}
 	};
 };

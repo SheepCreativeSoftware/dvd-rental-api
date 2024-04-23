@@ -9,7 +9,7 @@ const getLoginBody = zod.object({
 });
 
 const loginUser = (): Handler => {
-	return async (req, res) => {
+	return async (req, res, next) => {
 		const { password, username } = getLoginBody.parse(req.body);
 		await dataSource.getRepository(Staff).findOne({
 			where: {

@@ -1,16 +1,12 @@
-import express from 'express';
-import {
-	clientErrorHandler,
-	errorHandler,
-	logOnError,
-	notFoundHandler,
-} from '../handler/errorHandlers';
+import { clientErrorHandler, errorHandler, notFoundHandler } from '../middleware/errorHandlers';
 import { actorRouter } from './actor/router';
-import { filmsRouter } from './film/router';
-import session from 'express-session';
-import { getSessionCookieConfig } from '../config/sessionCookie';
 import { csrfTokenRouter } from './csrf-token/router';
+import { filmsRouter } from './film/router';
 import { getCsrfProtection } from '../config/csrfConfig';
+import { getSessionCookieConfig } from '../config/sessionCookie';
+import { logOnError } from '../middleware/errorLogger';
+import express from 'express';
+import session from 'express-session';
 
 const getApi = () => {
 	const app = express();

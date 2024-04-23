@@ -1,10 +1,10 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Customer } from './Customer';
 import { Staff } from './Staff';
 import { Rental } from './Rental';
 
 @Entity('payment')
-class Payment extends BaseEntity {
+class Payment {
 	@PrimaryGeneratedColumn({
 		name: 'payment_id',
 		type: 'integer',

@@ -1,10 +1,11 @@
 import express from 'express';
-import { getFilm } from './getFilm/handle';
-import { getFilmsBySearch } from './searchFilms/handle';
+import { getFilmById } from './getFilmById/handle';
+import { getFilms } from './getFilms/handle';
 
 const router = express.Router();
 
-router.get('/films/search', getFilmsBySearch());
-router.get('/films/:id', getFilm());
+// Get All
+router.get('/films', getFilms());
+router.get('/films/:id', getFilmById());
 
 export { router as filmsRouter };

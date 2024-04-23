@@ -9,16 +9,21 @@ const main = async () => {
 		await dataSource.initialize();
 		buntstift.success('Data Source has been initialized!');
 	} catch (error) {
-		buntstift.error(`Error during Data Source initialization: ${error}`);
+		throw new Error(`Error during Data Source initialization: ${error}`);
 	}
 
 	// Init server
 	const server = http.createServer(getApi());
 
 	const port = process.env.PORT || 3_000;
-	server.listen(port, () => {
-		buntstift.success(`Server has started on port: ${port}`);
-	});
+	server
+		.listen(port, () => {
+			buntstift.success(`Server has started and is listening on port: ${port}`);
+		})
+		.on('error', error => {
+			buntstift.error(`Server failed because of ${error.message}`);
+			throw error;
+		});
 };
 
 process.on('uncaughtException', (err, origin) => {

@@ -1,7 +1,7 @@
-import { BaseEntity, Entity, UpdateDateColumn } from 'typeorm';
+import { Entity, UpdateDateColumn } from 'typeorm';
 
 @Entity()
-class Update extends BaseEntity {
+class Update {
 	@UpdateDateColumn({
 		name: 'last_update',
 		type: 'timestamp without time zone',

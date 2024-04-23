@@ -1,18 +1,16 @@
 import express from 'express';
-import { addActor } from './addActor/handle';
-import { getActor } from './getActor/handle';
-import { getActors, getActorsByProperty, getActorsBySearch } from './getActors/handle';
-import { removeActor } from './removeActor/handle';
+import { createActor } from './createActor/handle';
+import { getActorById } from './getActorById/handle';
+import { getActors } from './getActors/handle';
+import { deleteActor } from './deleteActor/handle';
 import { updateActor } from './updateActor/handle';
 
 const router = express.Router();
 
 router.get('/actors', getActors());
-router.get('/actors/findBy', getActorsByProperty());
-router.get('/actors/search', getActorsBySearch());
-router.get('/actors/:id', getActor());
-router.post('/actors', addActor());
+router.get('/actors/:id', getActorById());
+router.post('/actors', createActor());
 router.put('/actors/:id', updateActor());
-router.delete('/actors/:id', removeActor());
+router.delete('/actors/:id', deleteActor());
 
 export { router as actorRouter };

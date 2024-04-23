@@ -1,8 +1,8 @@
 import type { SessionEntity } from 'typeorm-store-typeormfix';
-import { BaseEntity, Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('session')
-class Session extends BaseEntity implements SessionEntity {
+class Session implements SessionEntity {
 	@PrimaryColumn({
 		type: 'text',
 	})
